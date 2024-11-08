@@ -41,9 +41,28 @@ namespace HotelMatveevaZinina.View.Windows
             }
             else if (OldPasswordPb.Password != App.currentUser.Password)
             {
-                MessageBoxHelper.Error("Новые пароли не совпадают! Попробуйте снова.");
+                MessageBoxHelper.Error("Неверно введен текущий пароль! Попробуйте снова.");
             }
+            else if (NewPasswordPb.Password != AcceptNewPasswordPb.Password)
+            {
+                MessageBoxHelper.Error("Новые пароли не совпадают! Попробуйте снова.");
 
+            }
+            else if(OldPasswordPb.Password == NewPasswordPb.Password)
+            {
+                MessageBoxHelper.Error("Старый и новый пароль совпадают! Придумайте новый пароль.");
+            }
+            else
+            {
+                App.currentUser.Password = NewPasswordPb.Password;
+                App.currentUser.IsActiveted = true;
+
+                App.context.SaveChanges();
+
+                MessageBoxHelper.Information("Пароль успешно изменен!");
+
+                Close();
+            }
         }
     }
 }
