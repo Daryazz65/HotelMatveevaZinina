@@ -23,5 +23,10 @@ namespace HotelMatveevaZinina.View.Windows
         {
             InitializeComponent();
         }
+
+        private void UserBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

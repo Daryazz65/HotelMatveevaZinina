@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HotelMatveevaZinina.AppData;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,6 +27,22 @@ namespace HotelMatveevaZinina.View.Windows
 
         private void ChangePasswordBtn_Click(object sender, RoutedEventArgs e)
         {
+            ChangedPassword();
+        }
+
+        public void ChangedPassword()
+        {
+            if (string.IsNullOrEmpty(OldPasswordPb.Password) || 
+                string.IsNullOrEmpty(NewPasswordPb.Password) || 
+                string.IsNullOrEmpty(AcceptNewPasswordPb.Password))
+            {
+                MessageBoxHelper.Warning
+                    ("Все поля обязательны для заполнения! Заполните каждое поле!");
+            }
+            else if (OldPasswordPb.Password != App.currentUser.Password)
+            {
+                MessageBoxHelper.Error("Новые пароли не совпадают! Попробуйте снова.");
+            }
 
         }
     }
